@@ -1,8 +1,8 @@
-name: 'bookstore'
+version: "3.8"
+
 services:
   bookstore:
     image: sivaprasadreddy/bookstore
-    #build: .
     container_name: bookstore
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -14,7 +14,7 @@ services:
       MANAGEMENT_TRACING_ENABLED: "${TRACING_ENABLED}"
       MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: http://tempo:9411
     ports:
-      - "8080:8080"
+      - "8000:8080"
     restart: unless-stopped
     depends_on:
       - bookstore-postgres
@@ -41,4 +41,3 @@ services:
       - "6379:6379"
     environment:
       - REDIS_REPLICATION_MODE=master
-    restart: unless-stopped
